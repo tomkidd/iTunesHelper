@@ -47,6 +47,9 @@ namespace iTunesHelper
         private void iTunesParse()
         {
             iTunes = new iTunesAppClass();
+
+            
+
             mainLibrary = iTunes.LibraryPlaylist;
             tracks = mainLibrary.Tracks;
             IITFileOrCDTrack track;
@@ -65,6 +68,8 @@ namespace iTunesHelper
             {
                 OverallPosition++;
                 track = tracks[numTracks] as IITFileOrCDTrack;
+
+                //track.UpdateInfoFromFile();
 
                 if (track != null)
                 {
@@ -918,14 +923,54 @@ namespace iTunesHelper
                 }
             }
 
-            File.WriteAllText("log.txt", sb.ToString());
+            File.WriteAllText("ratings.txt", sb.ToString());
 
-            System.Diagnostics.Process.Start("log.txt");
+            System.Diagnostics.Process.Start("ratings.txt");
         }
 
         private void rbiTunesYes_CheckedChanged(object sender, EventArgs e)
         {
             FilterGrid();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                string x = row.Cells[0].Value.ToString();
+
+                WorkingTrack wt = collection[x.ToLower()];
+
+                if (wt != null)
+                {
+                    if (wt.Position != null)
+                    {
+                        IITFileOrCDTrack track = GetITTFileOrCDTrackFromWorkingTrack(wt);
+
+                        string SortAlbum = new FileInfo(wt.iTunesLocation).Directory.Name;
+
+                        if (track.SortAlbum != SortAlbum)
+                            track.SortAlbum = SortAlbum;
+
+                        wt.iTunesSortAlbum = SortAlbum;
+                    }
+
+                    string newID3SortAlbum = new FileInfo(wt.ID3Location).Directory.Name;
+
+                    TagLib.File mp3File = TagLib.File.Create(wt.ID3Location);
+
+                    if (mp3File.Tag.AlbumSort != newID3SortAlbum)
+                    {
+                        mp3File.Tag.AlbumSort = newID3SortAlbum;
+                        mp3File.Save();
+                    }
+
+                    wt.ID3AlbumArtist = newID3SortAlbum;
+
+                    collection[x.ToLower()] = wt;
+                }
+            }
+            MessageBox.Show("done");
         }
     }
 

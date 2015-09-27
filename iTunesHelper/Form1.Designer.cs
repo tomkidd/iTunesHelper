@@ -109,6 +109,7 @@
             this.rbProperCompilationIgnore = new System.Windows.Forms.RadioButton();
             this.rbProperCompilationNo = new System.Windows.Forms.RadioButton();
             this.rbProperCompilationYes = new System.Windows.Forms.RadioButton();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Artwork)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -879,11 +880,22 @@
             this.rbProperCompilationYes.UseVisualStyleBackColor = true;
             this.rbProperCompilationYes.CheckedChanged += new System.EventHandler(this.rbiTunesYes_CheckedChanged);
             // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(14, 655);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(188, 23);
+            this.button13.TabIndex = 78;
+            this.button13.Text = "Set Sort Album on Selected Files";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 789);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -1053,6 +1065,7 @@
         private System.Windows.Forms.RadioButton rbProperCompilationIgnore;
         private System.Windows.Forms.RadioButton rbProperCompilationNo;
         private System.Windows.Forms.RadioButton rbProperCompilationYes;
+        private System.Windows.Forms.Button button13;
     }
 }
 
