@@ -78,7 +78,11 @@ namespace iTunesHelper
                         if (track.Location.StartsWith(FileRoot))
                         {
                             //files.Add(track.Location, numTracks);
-                            collection.Add(track.Location.ToLower(), WorkingTrackFromIITFileOrCDTrack(track, numTracks));
+
+                            if (!collection.ContainsKey(track.Location.ToLower()))
+                            {
+                                collection.Add(track.Location.ToLower(), WorkingTrackFromIITFileOrCDTrack(track, numTracks));
+                            }
                         }
                     }
                 }
@@ -912,16 +916,42 @@ namespace iTunesHelper
 
         private void button12_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
+            iTunes = new iTunesAppClass();
+            mainLibrary = iTunes.LibraryPlaylist;
+            tracks = mainLibrary.Tracks;
 
-            foreach (WorkingTrack wt in collection.Values)
+            var count = tracks.Count;
+
+            var sb = new StringBuilder();
+
+            for (int i = 1; i < tracks.Count + 1; i++)
             {
-                if (wt.isIniTunes)
+                IITFileOrCDTrack track = tracks[i] as IITFileOrCDTrack;
+
+                if (track != null)
                 {
-                    sb.AppendFormat("{0}\t{1}\t{2}\t{3}\t{4}", wt.iTunesArtist, wt.iTunesAlbum, wt.iTunesName, wt.iTunesLocation, wt.iTunesRating);
-                    sb.Append(Environment.NewLine);
+                    if (track.Location != null)
+                    {
+                        if (track.Location.StartsWith(FileRoot))
+                        {
+                            sb.AppendFormat("{0}\t{1}\t{2}\t{3}\t{4}", track.Artist, track.Album, track.Name, track.Location, track.Rating);
+                            sb.Append(Environment.NewLine);
+                        }
+                    }
                 }
+
             }
+
+            textBox1.Text = sb.ToString();
+
+            //foreach (WorkingTrack wt in collection.Values)
+            //{
+            //    if (wt.isIniTunes)
+            //    {
+            //        sb.AppendFormat("{0}\t{1}\t{2}\t{3}\t{4}", wt.iTunesArtist, wt.iTunesAlbum, wt.iTunesName, wt.iTunesLocation, wt.iTunesRating);
+            //        sb.Append(Environment.NewLine);
+            //    }
+            //}
 
             File.WriteAllText("ratings.txt", sb.ToString());
 
@@ -971,6 +1001,132 @@ namespace iTunesHelper
                 }
             }
             MessageBox.Show("done");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            iTunes = new iTunesAppClass();
+            mainLibrary = iTunes.LibraryPlaylist;
+            tracks = mainLibrary.Tracks;
+
+            var count = tracks.Count;
+
+            var sb = new StringBuilder();
+
+            for (int i = 1; i < tracks.Count + 1; i++)
+            {
+                IITFileOrCDTrack track = tracks[i] as IITFileOrCDTrack;
+
+                if (track != null)
+                {
+                    if (track.Location != null)
+                    {
+                        if (track.Location.StartsWith(FileRoot))
+                        {
+                            sb.AppendLine(track.Location);
+                            track.UpdateInfoFromFile();
+                        }
+                    }
+                }
+
+            }
+
+            textBox1.Text = sb.ToString();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            iTunes = new iTunesAppClass();
+            mainLibrary = iTunes.LibraryPlaylist;
+            tracks = mainLibrary.Tracks;
+
+            var count = tracks.Count;
+
+            var sb = new StringBuilder();
+
+            for (int i = 1; i < tracks.Count + 1; i++)
+            {
+                IITFileOrCDTrack track = tracks[i] as IITFileOrCDTrack;
+
+                if (track != null)
+                {
+                    if (track.Location != null)
+                    {
+                        if (track.Location.StartsWith(FileRoot))
+                        {
+                            if (string.IsNullOrWhiteSpace(track.Description))
+                            {
+                                try {
+                                    string sortAlbumString = string.Format("{0} {1}", track.Year, track.Album);
+
+                                    var fiSong = new FileInfo(track.Location);
+                                    var artistString = fiSong.Directory.Parent.Name;
+
+                                    if (track.SortAlbum != sortAlbumString)
+                                        track.SortAlbum = sortAlbumString;
+
+                                    if (string.IsNullOrWhiteSpace(track.Description))
+                                    {
+                                        track.Description = track.Artist; // stick MusicBrainz' Artist info into Description
+                                    }
+                                    track.Artist = artistString;
+                                    track.AlbumArtist = artistString;
+                                    track.SortAlbumArtist = artistString;
+
+                                    // todo: is albumartist null?
+
+                                    //if (track.SortArtist != track.AlbumArtist)
+                                    //    track.SortArtist = track.AlbumArtist;
+
+                                    sb.AppendLine(track.Location);
+                                    //track.UpdateInfoFromFile();
+                                }
+                                catch (Exception ex)
+                                {
+                                    sb.AppendLine(ex.Message);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            textBox1.Text = sb.ToString();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            iTunes = new iTunesAppClass();
+            mainLibrary = iTunes.LibraryPlaylist;
+            tracks = mainLibrary.Tracks;
+
+            var count = tracks.Count;
+
+            var sb = new StringBuilder();
+
+            for (int i = 1; i < tracks.Count + 1; i++)
+            {
+                IITFileOrCDTrack track = tracks[i] as IITFileOrCDTrack;
+
+                if (track != null)
+                {
+                    if (track.Location != null)
+                    {
+                        if (track.Location.StartsWith(FileRoot))
+                        {
+                            if (!string.IsNullOrWhiteSpace(track.Description))
+                            {
+                                track.Description = "";
+                                sb.AppendLine(track.Location);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            textBox1.Text = sb.ToString();
         }
     }
 

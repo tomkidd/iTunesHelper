@@ -110,6 +110,10 @@
             this.rbProperCompilationNo = new System.Windows.Forms.RadioButton();
             this.rbProperCompilationYes = new System.Windows.Forms.RadioButton();
             this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Artwork)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -376,16 +380,15 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(558, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(450, 685);
+            this.dataGridView1.Size = new System.Drawing.Size(389, 685);
             this.dataGridView1.TabIndex = 38;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridView1_RowStateChanged);
@@ -646,7 +649,7 @@
             this.groupBox1.Controls.Add(this.rbiTunesIgnore);
             this.groupBox1.Controls.Add(this.rbiTunesNo);
             this.groupBox1.Controls.Add(this.rbiTunesYes);
-            this.groupBox1.Location = new System.Drawing.Point(558, 697);
+            this.groupBox1.Location = new System.Drawing.Point(535, 697);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(73, 86);
             this.groupBox1.TabIndex = 73;
@@ -694,7 +697,7 @@
             this.groupBox2.Controls.Add(this.dbDiskIgnore);
             this.groupBox2.Controls.Add(this.rbDiskNo);
             this.groupBox2.Controls.Add(this.rbDiskYes);
-            this.groupBox2.Location = new System.Drawing.Point(637, 697);
+            this.groupBox2.Location = new System.Drawing.Point(614, 697);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(73, 86);
             this.groupBox2.TabIndex = 74;
@@ -742,7 +745,7 @@
             this.groupBox3.Controls.Add(this.rbMismatchIgnore);
             this.groupBox3.Controls.Add(this.rbMismatchNo);
             this.groupBox3.Controls.Add(this.rbMismatchYes);
-            this.groupBox3.Location = new System.Drawing.Point(716, 697);
+            this.groupBox3.Location = new System.Drawing.Point(693, 697);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(73, 86);
             this.groupBox3.TabIndex = 75;
@@ -790,7 +793,7 @@
             this.groupBox4.Controls.Add(this.rbApproxIgnore);
             this.groupBox4.Controls.Add(this.rbApproxNo);
             this.groupBox4.Controls.Add(this.rbApproxYes);
-            this.groupBox4.Location = new System.Drawing.Point(795, 697);
+            this.groupBox4.Location = new System.Drawing.Point(772, 697);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(73, 86);
             this.groupBox4.TabIndex = 76;
@@ -838,7 +841,7 @@
             this.groupBox5.Controls.Add(this.rbProperCompilationIgnore);
             this.groupBox5.Controls.Add(this.rbProperCompilationNo);
             this.groupBox5.Controls.Add(this.rbProperCompilationYes);
-            this.groupBox5.Location = new System.Drawing.Point(874, 697);
+            this.groupBox5.Location = new System.Drawing.Point(851, 697);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(73, 86);
             this.groupBox5.TabIndex = 77;
@@ -890,11 +893,56 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(14, 438);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(189, 23);
+            this.button14.TabIndex = 79;
+            this.button14.Text = "Rebuild iTunes from MP3 tags";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(953, 5);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(471, 685);
+            this.textBox1.TabIndex = 80;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(210, 438);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(168, 23);
+            this.button15.TabIndex = 81;
+            this.button15.Text = "Redo all Artists and Sort Albums";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(396, 430);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 82;
+            this.button16.Text = "button16";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 789);
+            this.ClientSize = new System.Drawing.Size(1436, 789);
+            this.Controls.Add(this.button16);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -1066,6 +1114,10 @@
         private System.Windows.Forms.RadioButton rbProperCompilationNo;
         private System.Windows.Forms.RadioButton rbProperCompilationYes;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
     }
 }
 
